@@ -22,7 +22,7 @@ public class ExampleClient {
                 new LoggingIngester(
                         new ProfilingIngester(
                                 new HttpIngester("127.0.0.1")));
-        HttpIngester.IngestionStatus status = ingester.ingest(dataPoints);
+        ingester.ingest(dataPoints);
     }
 
     public static DataPoints newDataPointsBatch() {
