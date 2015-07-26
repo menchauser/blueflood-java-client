@@ -1,8 +1,13 @@
 package karanashev.blueflood;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import karanashev.blueflood.client.DataPoint;
-import karanashev.blueflood.client.JSONDataPoint;
+import com.fasterxml.jackson.core.Version;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.module.SimpleModule;
+import karanashev.blueflood.client.DataPoints;
+import karanashev.blueflood.client.json.DataPointsSerializer;
+import karanashev.blueflood.client.json.JacksonConfiguration;
+import org.glassfish.jersey.jackson.JacksonFeature;
 import org.joda.time.DateTime;
 
 import javax.ws.rs.client.*;
@@ -15,24 +20,33 @@ import java.math.BigDecimal;
  */
 public class ExampleClient {
     public static void main(String[] args) throws JsonProcessingException {
-        DataPoint dataPoint = newDataPoint();
-        System.out.println("Data Point to ingest: " + dataPoint);
-        JSONDataPoint jsonDataPoint = new JSONDataPoint(dataPoint);
-        System.out.println("JSON data point: " + jsonDataPoint);
+        DataPoints dataPoints = newDataPointsBatch();
+        System.out.println("Data Points to ingest: " + dataPoints);
+        System.out.println("JSON to be sent: " + defaultObjectMapper().writeValueAsString(dataPoints));
 
         Client client = ClientBuilder.newClient();
+        client.register(JacksonFeature.class);
+        client.register(JacksonConfiguration.class);
         WebTarget target = client.target("http://127.0.0.1:19000/v2.0/:tennantId/ingest");
         target.queryParam("tennantId", "extennant1");
         Invocation.Builder request = target.request();
         System.out.println("URI: " + target.getUri());
 
-        Response response = request.post(Entity.entity(jsonDataPoint.jsonString(), MediaType.APPLICATION_JSON_TYPE));
+        Response response = request.post(Entity.entity(dataPoints, MediaType.APPLICATION_JSON_TYPE));
         System.out.println("Response status code: " + response.getStatus());
         System.out.println("Response status: " + response.getStatusInfo());
     }
 
-    public static DataPoint newDataPoint() {
-        return new DataPoint(new DateTime(), 60 * 60 * 24, new BigDecimal("54"), "example1.cpu");
+    public static DataPoints newDataPointsBatch() {
+        return new DataPoints().add(new DateTime(), 60 * 60 * 24, new BigDecimal("54"), "example1.cpu");
+    }
+
+    public static ObjectMapper defaultObjectMapper() {
+        ObjectMapper objectMapper = new ObjectMapper();
+        SimpleModule module = new SimpleModule("DataPointsModule", new Version(0, 0, 1, "SNAPSHOT", "karanashev.blueflood-java-client", "blueflood-java-client"));
+        module.addSerializer(DataPoints.class, new DataPointsSerializer());
+        objectMapper.registerModule(module);
+        return objectMapper;
     }
 
 }
