@@ -8,6 +8,17 @@
     <artifactId>blueflood-java-client</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
+    <contributors>
+        <contributor>
+            <name>Mukhamed Karanashev</name>
+            <email>menchauser@gmail.com</email>
+            <roles>
+                <role>developer</role>
+            </roles>
+            <timezone>Europe/Samara</timezone>
+        </contributor>
+    </contributors>
+
     <build>
         <plugins>
             <plugin>
