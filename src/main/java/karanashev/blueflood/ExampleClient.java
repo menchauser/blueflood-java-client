@@ -22,7 +22,13 @@ public class ExampleClient {
                 new LoggingIngester(
                         new ProfilingIngester(
                                 new HttpIngester("127.0.0.1")));
-        ingester.ingest(dataPoints);
+        Ingester.IngestionResult result = ingester.ingest(dataPoints);
+        if (result.isSuccessful()) {
+            System.out.println("Successful ingestion");
+        } else {
+            System.out.println("Ingestion was unsuccessful");
+        }
+        System.out.println(result.message());
     }
 
     public static DataPoints newDataPointsBatch() {
