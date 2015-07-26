@@ -11,9 +11,9 @@ public class LoggingIngester implements Ingester {
     }
 
     @Override
-    public IngestionStatus ingest(DataPoints dataPoints) {
+    public IngestionResult ingest(DataPoints dataPoints) {
         System.out.println("Ingesting data points: " + dataPoints);
-        IngestionStatus result = ingester.ingest(dataPoints);
+        IngestionResult result = ingester.ingest(dataPoints);
         System.out.println("Result: " + result);
         return result;
     }

@@ -42,9 +42,10 @@ public class HttpIngester implements Ingester {
     }
 
     @Override
-    public IngestionStatus ingest(DataPoints dataPoints) {
+    public IngestionResult ingest(DataPoints dataPoints) {
         Response response = target.request().post(Entity.entity(dataPoints, MediaType.APPLICATION_JSON_TYPE));
-        return response.getStatusInfo() == Response.Status.OK ? IngestionStatus.OK : IngestionStatus.ERROR;
+        IngestionStatus ingestionStatus = response.getStatusInfo() == Response.Status.OK ? IngestionStatus.OK : IngestionStatus.ERROR;
+        return new IngestionResult(ingestionStatus);
     }
 
 }
