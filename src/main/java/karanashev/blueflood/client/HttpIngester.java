@@ -45,7 +45,7 @@ public class HttpIngester implements Ingester {
     public IngestionResult ingest(DataPoints dataPoints) {
         Response response = target.request().post(Entity.entity(dataPoints, MediaType.APPLICATION_JSON_TYPE));
         IngestionStatus ingestionStatus = response.getStatusInfo() == Response.Status.OK ? IngestionStatus.OK : IngestionStatus.ERROR;
-        return new IngestionResult(ingestionStatus);
+        return new IngestionResult(ingestionStatus, response.getStatusInfo().getReasonPhrase());
     }
 
 }
