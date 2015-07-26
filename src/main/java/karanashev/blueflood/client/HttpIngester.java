@@ -15,8 +15,6 @@ import javax.ws.rs.core.Response;
  */
 public class HttpIngester implements Ingester {
 
-    private final String host;
-    private final int ingestionPort;
     private final WebTarget target;
 
     public HttpIngester(String host) {
@@ -28,9 +26,6 @@ public class HttpIngester implements Ingester {
     }
 
     public HttpIngester(String host, int ingestionPort, String tennant) {
-        this.host = host;
-        this.ingestionPort = ingestionPort;
-
         target = defaultClient().target(buildTargetString(host, ingestionPort));
         target.queryParam("tennantId", tennant);
     }
@@ -49,7 +44,7 @@ public class HttpIngester implements Ingester {
     @Override
     public IngestionStatus ingest(DataPoints dataPoints) {
         Response response = target.request().post(Entity.entity(dataPoints, MediaType.APPLICATION_JSON_TYPE));
-        return response.getStatus() == Response.Status.OK.getStatusCode() ? IngestionStatus.OK : IngestionStatus.ERROR;
+        return response.getStatusInfo() == Response.Status.OK ? IngestionStatus.OK : IngestionStatus.ERROR;
     }
 
 }
