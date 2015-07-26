@@ -32,7 +32,7 @@ public class ExampleClient {
     }
 
     public static DataPoint newDataPoint() {
-        return new DataPoint(new DateTime(), 60 * 60 * 24, new BigDecimal("54.5"), "example1.cpu");
+        return new DataPoint(new DateTime(), 60 * 60 * 24, new BigDecimal("54"), "example1.cpu");
     }
 
 }

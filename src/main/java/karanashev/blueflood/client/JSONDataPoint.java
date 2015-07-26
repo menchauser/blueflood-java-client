@@ -40,12 +40,15 @@ public class JSONDataPoint {
         module.addSerializer(DataPoint.class, new JsonSerializer<DataPoint>() {
             @Override
             public void serialize(DataPoint dataPoint, JsonGenerator jsonGenerator, SerializerProvider serializerProvider) throws IOException, JsonProcessingException {
+                // TODO: correct bulk operations implementation is needed
+                jsonGenerator.writeStartArray();
                 jsonGenerator.writeStartObject();
                 jsonGenerator.writeNumberField("collectionTime", dataPoint.collectionTime().getMillis());
                 jsonGenerator.writeNumberField("ttlInSeconds", dataPoint.ttlInSeconds());
                 jsonGenerator.writeNumberField("metricValue", dataPoint.metricValue());
                 jsonGenerator.writeStringField("metricName", dataPoint.metricName());
                 jsonGenerator.writeEndObject();
+                jsonGenerator.writeEndArray();
             }
         });
         mapper.registerModule(module);
