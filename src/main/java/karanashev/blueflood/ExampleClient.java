@@ -5,14 +5,10 @@ import com.fasterxml.jackson.core.Version;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import karanashev.blueflood.client.DataPoints;
+import karanashev.blueflood.client.Ingester;
 import karanashev.blueflood.client.json.DataPointsSerializer;
-import karanashev.blueflood.client.json.JacksonConfiguration;
-import org.glassfish.jersey.jackson.JacksonFeature;
 import org.joda.time.DateTime;
 
-import javax.ws.rs.client.*;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 import java.math.BigDecimal;
 
 /**
@@ -24,17 +20,10 @@ public class ExampleClient {
         System.out.println("Data Points to ingest: " + dataPoints);
         System.out.println("JSON to be sent: " + defaultObjectMapper().writeValueAsString(dataPoints));
 
-        Client client = ClientBuilder.newClient();
-        client.register(JacksonFeature.class);
-        client.register(JacksonConfiguration.class);
-        WebTarget target = client.target("http://127.0.0.1:19000/v2.0/:tennantId/ingest");
-        target.queryParam("tennantId", "extennant1");
-        Invocation.Builder request = target.request();
-        System.out.println("URI: " + target.getUri());
+        Ingester ingester = new Ingester("127.0.0.1");
+        Ingester.IngestionStatus status = ingester.ingest(dataPoints);
 
-        Response response = request.post(Entity.entity(dataPoints, MediaType.APPLICATION_JSON_TYPE));
-        System.out.println("Response status code: " + response.getStatus());
-        System.out.println("Response status: " + response.getStatusInfo());
+        System.out.println("Ingestion status: " + status);
     }
 
     public static DataPoints newDataPointsBatch() {
