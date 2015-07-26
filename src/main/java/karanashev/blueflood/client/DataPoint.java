@@ -36,4 +36,14 @@ public class DataPoint {
     public String metricName() {
         return metricName;
     }
+
+    @Override
+    public String toString() {
+        return "DataPoint{" +
+                "collectionTime=" + collectionTime +
+                ", ttlInSeconds=" + ttlInSeconds +
+                ", metricValue=" + metricValue +
+                ", metricName='" + metricName + '\'' +
+                '}';
+    }
 }
