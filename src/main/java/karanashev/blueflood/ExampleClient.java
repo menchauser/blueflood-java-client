@@ -22,7 +22,8 @@ public class ExampleClient {
                 new LoggingIngester(
                         new ProfilingIngester(
                                 new HttpIngester("127.0.0.1")));
-        HttpIngester.IngestionStatus status = ingester.ingest(dataPoints);    }
+        HttpIngester.IngestionStatus status = ingester.ingest(dataPoints);
+    }
 
     public static DataPoints newDataPointsBatch() {
         return new DataPoints().add(new DateTime(), 60 * 60 * 24, new BigDecimal("54"), "example1.cpu");

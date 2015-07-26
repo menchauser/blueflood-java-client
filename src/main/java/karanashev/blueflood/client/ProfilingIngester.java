@@ -13,7 +13,7 @@ public class ProfilingIngester implements Ingester {
     @Override
     public IngestionStatus ingest(DataPoints dataPoints) {
         long start = System.nanoTime();
-        IngestionStatus result = ingest(dataPoints);
+        IngestionStatus result = ingester.ingest(dataPoints);
         long elapsed = System.nanoTime() - start;
         System.out.println("Ingestion took " + (elapsed / 1000) + " microseconds");
         return result;
