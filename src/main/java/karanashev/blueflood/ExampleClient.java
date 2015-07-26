@@ -4,8 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.Version;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
-import karanashev.blueflood.client.DataPoints;
-import karanashev.blueflood.client.Ingester;
+import karanashev.blueflood.client.*;
 import karanashev.blueflood.client.json.DataPointsSerializer;
 import org.joda.time.DateTime;
 
@@ -17,14 +16,13 @@ import java.math.BigDecimal;
 public class ExampleClient {
     public static void main(String[] args) throws JsonProcessingException {
         DataPoints dataPoints = newDataPointsBatch();
-        System.out.println("Data Points to ingest: " + dataPoints);
         System.out.println("JSON to be sent: " + defaultObjectMapper().writeValueAsString(dataPoints));
 
-        Ingester ingester = new Ingester("127.0.0.1");
-        Ingester.IngestionStatus status = ingester.ingest(dataPoints);
-
-        System.out.println("Ingestion status: " + status);
-    }
+        Ingester ingester =
+                new LoggingIngester(
+                        new ProfilingIngester(
+                                new HttpIngester("127.0.0.1")));
+        HttpIngester.IngestionStatus status = ingester.ingest(dataPoints);    }
 
     public static DataPoints newDataPointsBatch() {
         return new DataPoints().add(new DateTime(), 60 * 60 * 24, new BigDecimal("54"), "example1.cpu");
