@@ -1,24 +1,24 @@
 package karanashev.blueflood;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.glassfish.jersey.jackson.JacksonFeature;
+import karanashev.blueflood.client.DataPoint;
+import karanashev.blueflood.client.JSONDataPoint;
+import org.joda.time.DateTime;
 
 import javax.ws.rs.client.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.Collections;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.math.BigDecimal;
 
 /**
  * Created by Mukhamed Karanashev on 26.07.2015.
  */
 public class ExampleClient {
     public static void main(String[] args) throws JsonProcessingException {
-        String metricString = prepareMetric();
-        System.out.println("Metric to ingest: " + metricString);
+        DataPoint dataPoint = newDataPoint();
+        System.out.println("Data Point to ingest: " + dataPoint);
+        JSONDataPoint jsonDataPoint = new JSONDataPoint(dataPoint);
+        System.out.println("JSON data point: " + jsonDataPoint);
 
         Client client = ClientBuilder.newClient();
         WebTarget target = client.target("http://127.0.0.1:19000/v2.0/:tennantId/ingest");
@@ -26,19 +26,13 @@ public class ExampleClient {
         Invocation.Builder request = target.request();
         System.out.println("URI: " + target.getUri());
 
-        Response response = request.post(Entity.entity(metricString, MediaType.APPLICATION_JSON_TYPE));
+        Response response = request.post(Entity.entity(jsonDataPoint.jsonString(), MediaType.APPLICATION_JSON_TYPE));
         System.out.println("Response status code: " + response.getStatus());
         System.out.println("Response status: " + response.getStatusInfo());
     }
 
-    public static String prepareMetric() throws JsonProcessingException {
-        Map<String, Object> object = new HashMap<>();
-        object.put("collectionTime", new Date().getTime());
-        object.put("ttlInSeconds", 60 * 60 * 24);
-        object.put("metricValue", 46);
-        object.put("metricName", "example.cpu");
-
-        ObjectMapper objectMapper = new ObjectMapper();
-        return objectMapper.writeValueAsString(Collections.singleton(object));
+    public static DataPoint newDataPoint() {
+        return new DataPoint(new DateTime(), 60 * 60 * 24, new BigDecimal("54"), "example1.cpu");
     }
+
 }

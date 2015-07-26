@@ -1,26 +1,27 @@
 package karanashev.blueflood.client;
 
+import org.joda.time.DateTime;
+
 import java.math.BigDecimal;
-import java.util.Date;
 
 /**
  * Created by Mukhamed Karanashev on 26.07.2015.
  */
 public class DataPoint {
 
-    private final Date collectionTime;
+    private final DateTime collectionTime;
     private final long ttlInSeconds;
     private final BigDecimal metricValue;
     private final String metricName;
 
-    public DataPoint(Date collectionTime, long ttlInSeconds, BigDecimal metricValue, String metricName) {
+    public DataPoint(DateTime collectionTime, long ttlInSeconds, BigDecimal metricValue, String metricName) {
         this.collectionTime = collectionTime;
         this.ttlInSeconds = ttlInSeconds;
         this.metricValue = metricValue;
         this.metricName = metricName;
     }
 
-    public Date collectionTime() {
+    public DateTime collectionTime() {
         return collectionTime;
     }
 
@@ -34,5 +35,15 @@ public class DataPoint {
 
     public String metricName() {
         return metricName;
+    }
+
+    @Override
+    public String toString() {
+        return "DataPoint{" +
+                "collectionTime=" + collectionTime +
+                ", ttlInSeconds=" + ttlInSeconds +
+                ", metricValue=" + metricValue +
+                ", metricName='" + metricName + '\'' +
+                '}';
     }
 }
