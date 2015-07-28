@@ -1,0 +1,22 @@
+apply plugin: 'java'
+
+group = 'karanashev.blueflood-java-client'
+version = '0.0.1-SNAPSHOT'
+
+description = """"""
+
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'joda-time', name: 'joda-time', version:'2.7'
+    compile group: 'javax.ws.rs', name: 'javax.ws.rs-api', version:'2.0.1'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version:'2.5.2'
+    compile group: 'org.glassfish.jersey.media', name: 'jersey-media-json-jackson', version:'2.19'
+    compile group: 'org.glassfish.jersey.core', name: 'jersey-client', version:'2.19'
+    compile group: 'org.glassfish.jersey.connectors', name: 'jersey-jetty-connector', version:'2.19'
+}
