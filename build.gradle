@@ -3,7 +3,7 @@ apply plugin: 'java'
 group = 'karanashev.blueflood-java-client'
 version = '0.0.1-SNAPSHOT'
 
-description = """"""
+description = """Simple Java over REST client for BlueFlood database (http://blueflood.io/)"""
 
 sourceCompatibility = 1.7
 targetCompatibility = 1.7
