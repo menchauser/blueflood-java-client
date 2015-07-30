@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * Created by Mukhamed Karanashev on 26.07.2015.
  */
-public class DataPoints implements Iterable<DataPoint> {
+public final class DataPoints implements Iterable<DataPoint> {
 
     private final List<DataPoint> dataPointsList = new ArrayList<>();
 

@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 /**
  * Created by Mukhamed Karanashev on 26.07.2015.
  */
-public class DataPoint {
+public final class DataPoint {
 
     private final DateTime collectionTime;
     private final long ttlInSeconds;
@@ -45,5 +45,28 @@ public class DataPoint {
                 ", metricValue=" + metricValue +
                 ", metricName='" + metricName + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        DataPoint dataPoint = (DataPoint) o;
+
+        if (ttlInSeconds != dataPoint.ttlInSeconds) return false;
+        if (!collectionTime.equals(dataPoint.collectionTime)) return false;
+        if (!metricValue.equals(dataPoint.metricValue)) return false;
+        return metricName.equals(dataPoint.metricName);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = collectionTime.hashCode();
+        result = 31 * result + (int) (ttlInSeconds ^ (ttlInSeconds >>> 32));
+        result = 31 * result + metricValue.hashCode();
+        result = 31 * result + metricName.hashCode();
+        return result;
     }
 }
