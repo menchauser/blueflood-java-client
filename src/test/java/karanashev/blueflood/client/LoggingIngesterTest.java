@@ -1,6 +1,11 @@
 package karanashev.blueflood.client;
 
-import static org.junit.Assert.*;
+import org.joda.time.DateTime;
+import org.junit.Test;
+
+import java.math.BigDecimal;
+
+import static org.mockito.Mockito.*;
 
 /**
  * Author: Karanashev
@@ -8,9 +13,15 @@ import static org.junit.Assert.*;
  */
 public class LoggingIngesterTest {
 
-    @org.junit.Test
-    public void testIngest() throws Exception {
+    @Test
+    public void loggingIngestionInvokesInnerIngestion() throws Exception {
+        Ingester innerIngester = mock(Ingester.class);
+        LoggingIngester loggingIngester = new LoggingIngester(innerIngester);
+        DataPoints dataPoints = new DataPoints().add(new DateTime(), 1000, BigDecimal.ONE, "example.one");
 
+        loggingIngester.ingest(dataPoints);
+
+        verify(innerIngester, only()).ingest(dataPoints);
     }
 
 }
