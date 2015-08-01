@@ -3,17 +3,17 @@ package karanashev.blueflood.client;
 /**
  * Created by Mukhamed Karanashev on 26.07.2015.
  */
-public class LoggingIngester implements Ingester {
-    private final Ingester ingester;
+public class LoggingIngestionEndpoint implements IngestionEndpoint {
+    private final IngestionEndpoint ingestionEndpoint;
 
-    public LoggingIngester(Ingester ingester) {
-        this.ingester = ingester;
+    public LoggingIngestionEndpoint(IngestionEndpoint ingestionEndpoint) {
+        this.ingestionEndpoint = ingestionEndpoint;
     }
 
     @Override
     public IngestionResult ingest(DataPoints dataPoints) {
         System.out.println("Ingesting data points: " + dataPoints);
-        IngestionResult result = ingester.ingest(dataPoints);
+        IngestionResult result = ingestionEndpoint.ingest(dataPoints);
         System.out.println("Result: " + result);
         return result;
     }

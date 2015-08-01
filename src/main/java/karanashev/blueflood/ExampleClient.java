@@ -18,11 +18,11 @@ public class ExampleClient {
         DataPoints dataPoints = newDataPointsBatch();
         System.out.println("JSON to be sent: " + defaultObjectMapper().writeValueAsString(dataPoints));
 
-        Ingester ingester =
-                new LoggingIngester(
-                        new ProfilingIngester(
-                                new HttpIngester("127.0.0.1")));
-        Ingester.IngestionResult result = ingester.ingest(dataPoints);
+        IngestionEndpoint ingestionEndpoint =
+                new LoggingIngestionEndpoint(
+                        new ProfilingIngestionEndpoint(
+                                new HttpIngestionEndpoint("127.0.0.1")));
+        IngestionEndpoint.IngestionResult result = ingestionEndpoint.ingest(dataPoints);
         if (result.isSuccessful()) {
             System.out.println("Successful ingestion");
         } else {

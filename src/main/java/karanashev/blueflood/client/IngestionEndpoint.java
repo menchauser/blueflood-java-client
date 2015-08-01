@@ -3,7 +3,7 @@ package karanashev.blueflood.client;
 /**
  * Created by Mukhamed Karanashev on 26.07.2015.
  */
-public interface Ingester {
+public interface IngestionEndpoint {
     IngestionResult ingest(DataPoints dataPoints);
 
     class IngestionResult {

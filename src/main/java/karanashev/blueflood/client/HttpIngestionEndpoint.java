@@ -13,19 +13,19 @@ import javax.ws.rs.core.Response;
 /**
  * Created by Mukhamed Karanashev on 26.07.2015.
  */
-public class HttpIngester implements Ingester {
+public class HttpIngestionEndpoint implements IngestionEndpoint {
 
     private final WebTarget target;
 
-    public HttpIngester(String host) {
+    public HttpIngestionEndpoint(String host) {
         this(host, "default");
     }
 
-    public HttpIngester(String host, String tennant) {
+    public HttpIngestionEndpoint(String host, String tennant) {
         this(host, 19000, tennant);
     }
 
-    public HttpIngester(String host, int ingestionPort, String tennant) {
+    public HttpIngestionEndpoint(String host, int ingestionPort, String tennant) {
         target = defaultClient().target(buildTargetString(host, ingestionPort));
         target.queryParam("tennantId", tennant);
     }

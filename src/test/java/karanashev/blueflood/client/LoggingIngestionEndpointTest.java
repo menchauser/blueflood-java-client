@@ -11,17 +11,17 @@ import static org.mockito.Mockito.*;
  * Author: Karanashev
  * Date: 30.07.15
  */
-public class LoggingIngesterTest {
+public class LoggingIngestionEndpointTest {
 
     @Test
     public void loggingIngestionInvokesInnerIngestion() throws Exception {
-        Ingester innerIngester = mock(Ingester.class);
-        LoggingIngester loggingIngester = new LoggingIngester(innerIngester);
+        IngestionEndpoint innerIngestionEndpoint = mock(IngestionEndpoint.class);
+        LoggingIngestionEndpoint loggingIngester = new LoggingIngestionEndpoint(innerIngestionEndpoint);
         DataPoints dataPoints = new DataPoints().add(new DateTime(), 1000, BigDecimal.ONE, "example.one");
 
         loggingIngester.ingest(dataPoints);
 
-        verify(innerIngester, only()).ingest(dataPoints);
+        verify(innerIngestionEndpoint, only()).ingest(dataPoints);
     }
 
 }

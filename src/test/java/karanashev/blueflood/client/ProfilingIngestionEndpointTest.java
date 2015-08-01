@@ -11,16 +11,16 @@ import static org.mockito.Mockito.*;
  * Author: Karanashev
  * Date: 30.07.15
  */
-public class ProfilingIngesterTest {
+public class ProfilingIngestionEndpointTest {
 
     @Test
     public void profilingIngestionInvokesInnerIngestion() throws Exception {
-        Ingester innerIngester = mock(Ingester.class);
-        ProfilingIngester profilingIngester = new ProfilingIngester(innerIngester);
+        IngestionEndpoint innerIngestionEndpoint = mock(IngestionEndpoint.class);
+        ProfilingIngestionEndpoint profilingIngester = new ProfilingIngestionEndpoint(innerIngestionEndpoint);
         DataPoints dataPoints = new DataPoints().add(new DateTime(), 1000, BigDecimal.ONE, "example.one");
 
         profilingIngester.ingest(dataPoints);
 
-        verify(innerIngester, only()).ingest(dataPoints);
+        verify(innerIngestionEndpoint, only()).ingest(dataPoints);
     }
 }
