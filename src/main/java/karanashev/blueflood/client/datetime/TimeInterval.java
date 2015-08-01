@@ -5,16 +5,16 @@ import java.util.concurrent.TimeUnit;
 /**
  * Created by Mukhamed Karanashev on 01.08.2015.
  */
-public class Time {
+public class TimeInterval {
     private final long nanoTime;
 
-    public Time(long time, TimeUnit timeUnit) {
+    public TimeInterval(long time, TimeUnit timeUnit) {
         checkTimeValue(time, timeUnit);
 
         nanoTime = timeUnit.toNanos(time);
     }
 
-    public Time(long firstTime, TimeUnit firstTimeUnit, long secondTime, TimeUnit secondTimeUnit) {
+    public TimeInterval(long firstTime, TimeUnit firstTimeUnit, long secondTime, TimeUnit secondTimeUnit) {
         checkTimeValue(firstTime, firstTimeUnit);
         checkTimeValue(secondTime, secondTimeUnit);
 
@@ -34,7 +34,7 @@ public class Time {
 
     @Override
     public String toString() {
-        return "Time{" +
+        return "TimeInterval{" +
                 "nanoTime=" + nanoTime +
                 '}';
     }
@@ -44,9 +44,9 @@ public class Time {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Time time = (Time) o;
+        TimeInterval timeInterval = (TimeInterval) o;
 
-        return nanoTime == time.nanoTime;
+        return nanoTime == timeInterval.nanoTime;
 
     }
 

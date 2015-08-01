@@ -1,6 +1,6 @@
 package karanashev.blueflood.client;
 
-import karanashev.blueflood.client.datetime.Time;
+import karanashev.blueflood.client.datetime.TimeInterval;
 import org.joda.time.DateTime;
 
 import javax.annotation.Nonnull;
@@ -12,11 +12,11 @@ import java.math.BigDecimal;
 public final class DataPoint {
 
     private final DateTime collectionTime;
-    private final Time timeToLive;
+    private final TimeInterval timeToLive;
     private final BigDecimal metricValue;
     private final String metricName;
 
-    public DataPoint(@Nonnull DateTime collectionTime, @Nonnull Time timeToLive, @Nonnull BigDecimal metricValue, @Nonnull String metricName) {
+    public DataPoint(@Nonnull DateTime collectionTime, @Nonnull TimeInterval timeToLive, @Nonnull BigDecimal metricValue, @Nonnull String metricName) {
         this.collectionTime = collectionTime;
         this.timeToLive = timeToLive;
         this.metricValue = metricValue;
@@ -29,7 +29,7 @@ public final class DataPoint {
     }
 
     @Nonnull
-    public Time timeToLive() {
+    public TimeInterval timeToLive() {
         return timeToLive;
     }
 

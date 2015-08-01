@@ -6,18 +6,18 @@ import java.util.concurrent.TimeUnit;
  * Created by Mukhamed Karanashev on 01.08.2015.
  */
 public enum DefaultTimeInterval {
-    HOUR(new Time(1, TimeUnit.HOURS)),
-    DAY(new Time(1, TimeUnit.DAYS)),
-    WEEK(new Time(7, TimeUnit.DAYS)),
-    MONTH(new Time(30, TimeUnit.DAYS));
+    HOUR(new TimeInterval(1, TimeUnit.HOURS)),
+    DAY(new TimeInterval(1, TimeUnit.DAYS)),
+    WEEK(new TimeInterval(7, TimeUnit.DAYS)),
+    MONTH(new TimeInterval(30, TimeUnit.DAYS));
 
-    private final Time timeInterval;
+    private final TimeInterval timeInterval;
 
-    DefaultTimeInterval(Time timeInterval) {
+    DefaultTimeInterval(TimeInterval timeInterval) {
         this.timeInterval = timeInterval;
     }
 
-    public Time value() {
+    public TimeInterval value() {
         return timeInterval;
     }
 }
