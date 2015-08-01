@@ -5,6 +5,7 @@ import com.fasterxml.jackson.core.Version;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import karanashev.blueflood.client.*;
+import karanashev.blueflood.client.datetime.DefaultTimeInterval;
 import karanashev.blueflood.client.json.DataPointsSerializer;
 import org.joda.time.DateTime;
 
@@ -32,7 +33,7 @@ public class ExampleClient {
     }
 
     public static DataPoints newDataPointsBatch() {
-        return new DataPoints().add(new DateTime(), 60 * 60 * 24, new BigDecimal("54"), "example1.cpu");
+        return new DataPoints().add(new DateTime(), DefaultTimeInterval.DAY.value(), new BigDecimal("54"), "example1.cpu");
     }
 
     public static ObjectMapper defaultObjectMapper() {

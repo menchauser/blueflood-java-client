@@ -1,5 +1,6 @@
 package karanashev.blueflood.client;
 
+import karanashev.blueflood.client.datetime.TimeInterval;
 import org.joda.time.DateTime;
 
 import java.math.BigDecimal;
@@ -15,8 +16,8 @@ public final class DataPoints implements Iterable<DataPoint> {
 
     private final List<DataPoint> dataPointsList = new ArrayList<>();
 
-    public DataPoints add(DateTime collectionTime, long ttlInSeconds, BigDecimal metricValue, String metricName) {
-        dataPointsList.add(new DataPoint(collectionTime, ttlInSeconds, metricValue, metricName));
+    public DataPoints add(DateTime collectionTime, TimeInterval timeToLive, BigDecimal metricValue, String metricName) {
+        dataPointsList.add(new DataPoint(collectionTime, timeToLive, metricValue, metricName));
         return this;
     }
 

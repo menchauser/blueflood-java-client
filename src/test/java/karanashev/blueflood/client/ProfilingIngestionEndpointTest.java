@@ -1,5 +1,6 @@
 package karanashev.blueflood.client;
 
+import karanashev.blueflood.client.datetime.DefaultTimeInterval;
 import org.joda.time.DateTime;
 import org.junit.Test;
 
@@ -17,7 +18,7 @@ public class ProfilingIngestionEndpointTest {
     public void profilingIngestionInvokesInnerIngestion() throws Exception {
         IngestionEndpoint innerIngestionEndpoint = mock(IngestionEndpoint.class);
         ProfilingIngestionEndpoint profilingIngester = new ProfilingIngestionEndpoint(innerIngestionEndpoint);
-        DataPoints dataPoints = new DataPoints().add(new DateTime(), 1000, BigDecimal.ONE, "example.one");
+        DataPoints dataPoints = new DataPoints().add(new DateTime(), DefaultTimeInterval.HOUR.value(), BigDecimal.ONE, "example.one");
 
         profilingIngester.ingest(dataPoints);
 

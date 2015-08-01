@@ -1,7 +1,9 @@
 package karanashev.blueflood.client;
 
+import karanashev.blueflood.client.datetime.TimeInterval;
 import org.joda.time.DateTime;
 
+import javax.annotation.Nonnull;
 import java.math.BigDecimal;
 
 /**
@@ -10,29 +12,33 @@ import java.math.BigDecimal;
 public final class DataPoint {
 
     private final DateTime collectionTime;
-    private final long ttlInSeconds;
+    private final TimeInterval timeToLive;
     private final BigDecimal metricValue;
     private final String metricName;
 
-    public DataPoint(DateTime collectionTime, long ttlInSeconds, BigDecimal metricValue, String metricName) {
+    public DataPoint(@Nonnull DateTime collectionTime, @Nonnull TimeInterval timeToLive, @Nonnull BigDecimal metricValue, @Nonnull String metricName) {
         this.collectionTime = collectionTime;
-        this.ttlInSeconds = ttlInSeconds;
+        this.timeToLive = timeToLive;
         this.metricValue = metricValue;
         this.metricName = metricName;
     }
 
+    @Nonnull
     public DateTime collectionTime() {
         return collectionTime;
     }
 
-    public long ttlInSeconds() {
-        return ttlInSeconds;
+    @Nonnull
+    public TimeInterval timeToLive() {
+        return timeToLive;
     }
 
+    @Nonnull
     public BigDecimal metricValue() {
         return metricValue;
     }
 
+    @Nonnull
     public String metricName() {
         return metricName;
     }
@@ -41,7 +47,7 @@ public final class DataPoint {
     public String toString() {
         return "DataPoint{" +
                 "collectionTime=" + collectionTime +
-                ", ttlInSeconds=" + ttlInSeconds +
+                ", timeToLive=" + timeToLive +
                 ", metricValue=" + metricValue +
                 ", metricName='" + metricName + '\'' +
                 '}';
@@ -54,8 +60,8 @@ public final class DataPoint {
 
         DataPoint dataPoint = (DataPoint) o;
 
-        if (ttlInSeconds != dataPoint.ttlInSeconds) return false;
         if (!collectionTime.equals(dataPoint.collectionTime)) return false;
+        if (!timeToLive.equals(dataPoint.timeToLive)) return false;
         if (!metricValue.equals(dataPoint.metricValue)) return false;
         return metricName.equals(dataPoint.metricName);
 
@@ -64,7 +70,7 @@ public final class DataPoint {
     @Override
     public int hashCode() {
         int result = collectionTime.hashCode();
-        result = 31 * result + (int) (ttlInSeconds ^ (ttlInSeconds >>> 32));
+        result = 31 * result + timeToLive.hashCode();
         result = 31 * result + metricValue.hashCode();
         result = 31 * result + metricName.hashCode();
         return result;
