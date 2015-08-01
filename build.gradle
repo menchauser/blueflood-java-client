@@ -1,9 +1,12 @@
 apply plugin: 'java'
+apply plugin: 'application'
 
 group = 'karanashev.blueflood-java-client'
 version = '0.0.1-SNAPSHOT'
 
 description = """Simple Java over REST client for BlueFlood database (http://blueflood.io/)"""
+
+mainClassName = 'karanashev.blueflood.client.test.ExampleClient'
 
 sourceCompatibility = 1.7
 targetCompatibility = 1.7
@@ -13,12 +16,12 @@ repositories {
 }
 
 dependencies {
-    compile group: 'joda-time', name: 'joda-time', version:'2.7'
-    compile group: 'javax.ws.rs', name: 'javax.ws.rs-api', version:'2.0.1'
-    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version:'2.5.2'
-    compile group: 'org.glassfish.jersey.media', name: 'jersey-media-json-jackson', version:'2.19'
-    compile group: 'org.glassfish.jersey.core', name: 'jersey-client', version:'2.19'
-    compile group: 'org.glassfish.jersey.connectors', name: 'jersey-jetty-connector', version:'2.19'
+    compile group: 'joda-time', name: 'joda-time', version: '2.7'
+    compile group: 'javax.ws.rs', name: 'javax.ws.rs-api', version: '2.0.1'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.5.2'
+    compile group: 'org.glassfish.jersey.media', name: 'jersey-media-json-jackson', version: '2.19'
+    compile group: 'org.glassfish.jersey.core', name: 'jersey-client', version: '2.19'
+    compile group: 'org.glassfish.jersey.connectors', name: 'jersey-jetty-connector', version: '2.19'
     compile group: 'com.google.code.findbugs', name: 'jsr305', version: '2.0.1'
 
     testCompile group: 'junit', name: 'junit', version: '4.12'

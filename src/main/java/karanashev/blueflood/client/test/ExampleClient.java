@@ -1,4 +1,4 @@
-package karanashev.blueflood;
+package karanashev.blueflood.client.test;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.Version;
