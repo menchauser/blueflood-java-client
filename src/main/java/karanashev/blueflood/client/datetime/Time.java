@@ -8,10 +8,6 @@ import java.util.concurrent.TimeUnit;
 public class Time {
     private final long nanoTime;
 
-    public Time() {
-        this.nanoTime = 0;
-    }
-
     public Time(long time, TimeUnit timeUnit) {
         nanoTime = timeUnit.toNanos(time);
     }
