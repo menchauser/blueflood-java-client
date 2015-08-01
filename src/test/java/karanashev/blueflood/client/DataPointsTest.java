@@ -1,5 +1,6 @@
 package karanashev.blueflood.client;
 
+import karanashev.blueflood.client.datetime.DefaultTimeInterval;
 import org.joda.time.DateTime;
 import org.junit.Test;
 
@@ -24,8 +25,8 @@ public class DataPointsTest {
     @Test
     public void singleDataPointShouldBeAddedToBatch() {
         DataPoints dataPoints = new DataPoints();
-        DataPoint singlePoint = new DataPoint(new DateTime(), 1000, BigDecimal.ONE, "example.metric");
-        dataPoints.add(singlePoint.collectionTime(), singlePoint.ttlInSeconds(), singlePoint.metricValue(), singlePoint.metricName());
+        DataPoint singlePoint = new DataPoint(new DateTime(), DefaultTimeInterval.HOUR.value(), BigDecimal.ONE, "example.metric");
+        dataPoints.add(singlePoint.collectionTime(), DefaultTimeInterval.HOUR.value(), singlePoint.metricValue(), singlePoint.metricName());
 
         Iterator<DataPoint> iterator = dataPoints.iterator();
         assertTrue(iterator.hasNext());
@@ -37,12 +38,12 @@ public class DataPointsTest {
     @Test
     public void dataPointsAreAddedInOrder() {
         DataPoints dataPoints = new DataPoints();
-        DataPoint firstPoint = new DataPoint(DateTime.now(), 1000, BigDecimal.ONE, "example.metric.one");
-        DataPoint secondPoint = new DataPoint(DateTime.now(), 2000, BigDecimal.TEN, "example.metric.two");
+        DataPoint firstPoint = new DataPoint(DateTime.now(), DefaultTimeInterval.HOUR.value(), BigDecimal.ONE, "example.metric.one");
+        DataPoint secondPoint = new DataPoint(DateTime.now(), DefaultTimeInterval.DAY.value(), BigDecimal.TEN, "example.metric.two");
 
         dataPoints
-                .add(firstPoint.collectionTime(), firstPoint.ttlInSeconds(), firstPoint.metricValue(), firstPoint.metricName())
-                .add(secondPoint.collectionTime(), secondPoint.ttlInSeconds(), secondPoint.metricValue(), secondPoint.metricName());
+                .add(firstPoint.collectionTime(), DefaultTimeInterval.HOUR.value(), firstPoint.metricValue(), firstPoint.metricName())
+                .add(secondPoint.collectionTime(), DefaultTimeInterval.DAY.value(), secondPoint.metricValue(), secondPoint.metricName());
 
         Iterator<DataPoint> iterator = dataPoints.iterator();
         DataPoint firstResult = iterator.next();
@@ -56,7 +57,7 @@ public class DataPointsTest {
     @Test(expected = UnsupportedOperationException.class)
     public void dataPointsBatchIsImmutable() {
         DataPoints dataPoints = new DataPoints();
-        dataPoints.add(DateTime.now(), 1000, BigDecimal.ONE, "test");
+        dataPoints.add(DateTime.now(), DefaultTimeInterval.HOUR.value(), BigDecimal.ONE, "test");
 
         Iterator<DataPoint> iterator = dataPoints.iterator();
         iterator.next();

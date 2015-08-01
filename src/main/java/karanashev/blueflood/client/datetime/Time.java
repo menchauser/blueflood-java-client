@@ -31,4 +31,27 @@ public class Time {
             throw new IllegalArgumentException("Time value '" + time + "' for unit '" + timeUnit + "' cannot be negative");
         }
     }
+
+    @Override
+    public String toString() {
+        return "Time{" +
+                "nanoTime=" + nanoTime +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Time time = (Time) o;
+
+        return nanoTime == time.nanoTime;
+
+    }
+
+    @Override
+    public int hashCode() {
+        return (int) (nanoTime ^ (nanoTime >>> 32));
+    }
 }

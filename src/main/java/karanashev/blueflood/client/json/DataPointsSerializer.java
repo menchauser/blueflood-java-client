@@ -21,7 +21,7 @@ public class DataPointsSerializer extends JsonSerializer<DataPoints> {
         for (DataPoint dataPoint : dataPoints) {
             jsonGenerator.writeStartObject();
             jsonGenerator.writeNumberField("collectionTime", dataPoint.collectionTime().getMillis());
-            jsonGenerator.writeNumberField("ttlInSeconds", dataPoint.ttlInSeconds());
+            jsonGenerator.writeNumberField("ttlInSeconds", dataPoint.timeToLive().seconds());
             jsonGenerator.writeNumberField("metricValue", dataPoint.metricValue());
             jsonGenerator.writeStringField("metricName", dataPoint.metricName());
             jsonGenerator.writeEndObject();
