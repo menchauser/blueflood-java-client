@@ -4,8 +4,8 @@ import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
-import karanashev.blueflood.client.DataPoint;
-import karanashev.blueflood.client.DataPoints;
+import karanashev.blueflood.client.model.DataPoint;
+import karanashev.blueflood.client.model.DataPoints;
 
 import java.io.IOException;
 

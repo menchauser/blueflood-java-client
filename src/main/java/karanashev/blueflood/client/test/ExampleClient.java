@@ -4,9 +4,13 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.Version;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
-import karanashev.blueflood.client.*;
 import karanashev.blueflood.client.datetime.DefaultTimeInterval;
+import karanashev.blueflood.client.endpoints.HttpIngestionEndpoint;
+import karanashev.blueflood.client.endpoints.IngestionEndpoint;
+import karanashev.blueflood.client.endpoints.LoggingIngestionEndpoint;
+import karanashev.blueflood.client.endpoints.ProfilingIngestionEndpoint;
 import karanashev.blueflood.client.json.DataPointsSerializer;
+import karanashev.blueflood.client.model.DataPoints;
 import org.joda.time.DateTime;
 
 import java.math.BigDecimal;

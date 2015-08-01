@@ -1,4 +1,6 @@
-package karanashev.blueflood.client;
+package karanashev.blueflood.client.endpoints;
+
+import karanashev.blueflood.client.model.DataPoints;
 
 /**
  * Created by Mukhamed Karanashev on 26.07.2015.

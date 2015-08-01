@@ -1,6 +1,7 @@
-package karanashev.blueflood.client;
+package karanashev.blueflood.client.endpoints;
 
 import karanashev.blueflood.client.json.JacksonConfiguration;
+import karanashev.blueflood.client.model.DataPoints;
 import org.glassfish.jersey.jackson.JacksonFeature;
 
 import javax.ws.rs.client.Client;

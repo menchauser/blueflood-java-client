@@ -3,7 +3,7 @@ package karanashev.blueflood.client.json;
 import com.fasterxml.jackson.core.Version;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
-import karanashev.blueflood.client.DataPoints;
+import karanashev.blueflood.client.model.DataPoints;
 
 import javax.ws.rs.ext.ContextResolver;
 import javax.ws.rs.ext.Provider;

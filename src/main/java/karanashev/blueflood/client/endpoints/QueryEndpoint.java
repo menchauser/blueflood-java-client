@@ -1,4 +1,4 @@
-package karanashev.blueflood.client;
+package karanashev.blueflood.client.endpoints;
 
 import org.joda.time.DateTime;
 

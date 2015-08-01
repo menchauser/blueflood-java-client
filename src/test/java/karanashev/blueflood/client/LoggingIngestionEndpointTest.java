@@ -1,6 +1,9 @@
 package karanashev.blueflood.client;
 
 import karanashev.blueflood.client.datetime.DefaultTimeInterval;
+import karanashev.blueflood.client.endpoints.IngestionEndpoint;
+import karanashev.blueflood.client.endpoints.LoggingIngestionEndpoint;
+import karanashev.blueflood.client.model.DataPoints;
 import org.joda.time.DateTime;
 import org.junit.Test;
 

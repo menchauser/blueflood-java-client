@@ -1,4 +1,4 @@
-package karanashev.blueflood.client;
+package karanashev.blueflood.client.model;
 
 import karanashev.blueflood.client.datetime.DefaultTimeInterval;
 import org.joda.time.DateTime;
