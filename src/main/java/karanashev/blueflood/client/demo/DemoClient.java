@@ -1,4 +1,4 @@
-package karanashev.blueflood.client.test;
+package karanashev.blueflood.client.demo;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.Version;
@@ -18,7 +18,7 @@ import java.math.BigDecimal;
 /**
  * Created by Mukhamed Karanashev on 26.07.2015.
  */
-public class ExampleClient {
+public class DemoClient {
     public static void main(String[] args) throws JsonProcessingException {
         DataPoints dataPoints = newDataPointsBatch();
         System.out.println("JSON to be sent: " + defaultObjectMapper().writeValueAsString(dataPoints));
