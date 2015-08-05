@@ -2,7 +2,7 @@ apply plugin: 'java'
 apply plugin: 'application'
 
 group = 'karanashev.blueflood-java-client'
-version = '0.0.1-SNAPSHOT'
+version = '0.1.0-SNAPSHOT'
 
 description = """Simple Java over REST client for BlueFlood database (http://blueflood.io/)"""
 
