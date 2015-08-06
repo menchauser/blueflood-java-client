@@ -5,10 +5,7 @@ import com.fasterxml.jackson.core.Version;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import karanashev.blueflood.client.datetime.DefaultTimeInterval;
-import karanashev.blueflood.client.endpoints.HttpIngestionEndpoint;
-import karanashev.blueflood.client.endpoints.IngestionEndpoint;
-import karanashev.blueflood.client.endpoints.LoggingIngestionEndpoint;
-import karanashev.blueflood.client.endpoints.ProfilingIngestionEndpoint;
+import karanashev.blueflood.client.endpoints.*;
 import karanashev.blueflood.client.json.DataPointsSerializer;
 import karanashev.blueflood.client.model.DataPoints;
 import org.joda.time.DateTime;
@@ -27,7 +24,7 @@ public class DemoClient {
                 new LoggingIngestionEndpoint(
                         new ProfilingIngestionEndpoint(
                                 new HttpIngestionEndpoint("127.0.0.1")));
-        IngestionEndpoint.IngestionResult result = ingestionEndpoint.ingest(dataPoints);
+        IngestionResult result = ingestionEndpoint.ingest(dataPoints);
         if (result.isSuccessful()) {
             System.out.println("Successful ingestion");
         } else {

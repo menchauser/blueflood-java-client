@@ -45,7 +45,7 @@ public class HttpIngestionEndpoint implements IngestionEndpoint {
     @Override
     public IngestionResult ingest(DataPoints dataPoints) {
         Response response = target.request().post(Entity.entity(dataPoints, MediaType.APPLICATION_JSON_TYPE));
-        IngestionStatus ingestionStatus = response.getStatusInfo() == Response.Status.OK ? IngestionStatus.OK : IngestionStatus.ERROR;
+        IngestionResult.IngestionStatus ingestionStatus = response.getStatusInfo() == Response.Status.OK ? IngestionResult.IngestionStatus.OK : IngestionResult.IngestionStatus.ERROR;
         return new IngestionResult(ingestionStatus, response.getStatusInfo().getReasonPhrase());
     }
 
