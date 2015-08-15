@@ -1,22 +1,23 @@
-package karanashev.blueflood.client.endpoints;
+package karanashev.blueflood.client.endpoints.ingest;
 
 import karanashev.blueflood.client.model.DataPoints;
 
 /**
  * Created by Mukhamed Karanashev on 26.07.2015.
  */
-public class LoggingIngestionEndpoint implements IngestionEndpoint {
+public class ProfilingIngestionEndpoint implements IngestionEndpoint {
     private final IngestionEndpoint ingestionEndpoint;
 
-    public LoggingIngestionEndpoint(IngestionEndpoint ingestionEndpoint) {
+    public ProfilingIngestionEndpoint(IngestionEndpoint ingestionEndpoint) {
         this.ingestionEndpoint = ingestionEndpoint;
     }
 
     @Override
     public IngestionResult ingest(DataPoints dataPoints) {
-        System.out.println("Ingesting data points: " + dataPoints);
+        long start = System.nanoTime();
         IngestionResult result = ingestionEndpoint.ingest(dataPoints);
-        System.out.println("Result: " + result);
+        long elapsed = System.nanoTime() - start;
+        System.out.println("Ingestion took " + (elapsed / 1000) + " microseconds");
         return result;
     }
 }

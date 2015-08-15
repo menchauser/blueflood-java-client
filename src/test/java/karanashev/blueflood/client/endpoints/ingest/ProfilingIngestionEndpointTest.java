@@ -1,4 +1,4 @@
-package karanashev.blueflood.client.endpoints;
+package karanashev.blueflood.client.endpoints.ingest;
 
 import karanashev.blueflood.client.datetime.DefaultTimeInterval;
 import karanashev.blueflood.client.model.DataPoints;
@@ -13,17 +13,16 @@ import static org.mockito.Mockito.*;
  * Author: Karanashev
  * Date: 30.07.15
  */
-public class LoggingIngestionEndpointTest {
+public class ProfilingIngestionEndpointTest {
 
     @Test
-    public void loggingIngestionInvokesInnerIngestion() throws Exception {
+    public void profilingIngestionInvokesInnerIngestion() throws Exception {
         IngestionEndpoint innerIngestionEndpoint = mock(IngestionEndpoint.class);
-        LoggingIngestionEndpoint loggingIngester = new LoggingIngestionEndpoint(innerIngestionEndpoint);
+        ProfilingIngestionEndpoint profilingIngester = new ProfilingIngestionEndpoint(innerIngestionEndpoint);
         DataPoints dataPoints = new DataPoints().add(new DateTime(), DefaultTimeInterval.HOUR.value(), BigDecimal.ONE, "example.one");
 
-        loggingIngester.ingest(dataPoints);
+        profilingIngester.ingest(dataPoints);
 
         verify(innerIngestionEndpoint, only()).ingest(dataPoints);
     }
-
 }

@@ -5,7 +5,7 @@ import com.fasterxml.jackson.core.Version;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import karanashev.blueflood.client.datetime.DefaultTimeInterval;
-import karanashev.blueflood.client.endpoints.*;
+import karanashev.blueflood.client.endpoints.ingest.*;
 import karanashev.blueflood.client.json.DataPointsSerializer;
 import karanashev.blueflood.client.model.DataPoints;
 import org.joda.time.DateTime;

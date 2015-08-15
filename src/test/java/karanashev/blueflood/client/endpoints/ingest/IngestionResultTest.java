@@ -1,4 +1,4 @@
-package karanashev.blueflood.client.endpoints;
+package karanashev.blueflood.client.endpoints.ingest;
 
 import org.junit.Test;
 
