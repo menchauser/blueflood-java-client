@@ -9,11 +9,12 @@ public final class QueryValue<T> {
 
     private final int numPoints;
     private final long timestamp;
-    private Map<SelectType, T> values;
+    private final Map<SelectType, T> values;
 
-    public QueryValue(int numPoints, long timestamp) {
+    public QueryValue(int numPoints, long timestamp, Map<SelectType, T> values) {
         this.numPoints = numPoints;
         this.timestamp = timestamp;
+        this.values = values;
     }
 
     public int numPoints() {
