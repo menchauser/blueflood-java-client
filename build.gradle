@@ -6,7 +6,7 @@ version = '0.1.0-SNAPSHOT'
 
 description = """Simple Java over REST client for BlueFlood database (http://blueflood.io/)"""
 
-mainClassName = 'karanashev.blueflood.client.test.ExampleClient'
+mainClassName = 'karanashev.blueflood.client.demo.DemoClient'
 
 sourceCompatibility = 1.7
 targetCompatibility = 1.7
