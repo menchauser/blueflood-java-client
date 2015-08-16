@@ -7,5 +7,7 @@ import org.joda.time.DateTime;
  */
 public interface QueryEndpoint {
     // TODO: implement type
-    public Object query(String metricName, DateTime from, DateTime to);
+    Object query(String metricName, DateTime from, DateTime to, int points);
+
+    // TODO: add querying with 'select' option
 }
