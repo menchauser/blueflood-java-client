@@ -37,7 +37,6 @@ public class QueryDeserializer extends JsonDeserializer<QueryValues<BigDecimal>>
             QueryValue<BigDecimal> queryValue = new QueryValue<>(numPoints, timestamp, actualValues);
             result.add(queryValue);
         }
-        return new QueryValues<>(result
-        );
+        return new QueryValues<>(result);
     }
 }
